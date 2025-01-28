@@ -1,22 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Choix de compte</title>
+  <meta charset="UTF-8" />
+  <title>Choix de compte Pipiads</title>
+  <style>
+    /* Réinitialisation basique */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .button-container {
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      background-color: #fff;
+      color: #444;
+      font-size: 1rem;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Optionnel : style pour un footer */
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.85rem;
+      color: #e0e0e0;
+    }
+  </style>
 </head>
 <body>
-  <h1>Choisissez un compte Pipiads</h1>
 
-  <button onclick="window.location.href='/pipiads/account1'">
-    Compte 1
-  </button>
+  <h1>Choisissez votre compte Pipiads</h1>
 
-  <button onclick="window.location.href='/pipiads/account2'">
-    Compte 2
-  </button>
+  <div class="button-container">
+    <button onclick="window.location.href='/pipiads/account1'">Compte 1</button>
+    <button onclick="window.location.href='/pipiads/account2'">Compte 2</button>
+    <button onclick="window.location.href='/pipiads/account3'">Compte 3</button>
+  </div>
 
-  <button onclick="window.location.href='/pipiads/account3'">
-    Compte 3
-  </button>
+  <footer>Ecom Efficiency &copy; 2023</footer>
+
 </body>
 </html>
-
