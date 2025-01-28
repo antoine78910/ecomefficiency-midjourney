@@ -1,45 +1,22 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>CPipiads account choice</title>
+  <title>Choix de compte</title>
 </head>
 <body>
+  <h1>Choisissez un compte Pipiads</h1>
 
-  <h1>Choose your Pipiads account</h1>
+  <button onclick="window.location.href='/pipiads/account1'">
+    Compte 1
+  </button>
 
-  <button id="btnCompte1">Account 1</button>
-  <button id="btnCompte2">Account 2</button>
-  <button id="btnCompte3">Account 3</button>
+  <button onclick="window.location.href='/pipiads/account2'">
+    Compte 2
+  </button>
 
-  <script>
-    // Quand on clique sur "Compte 1", on charge et on exécute le script pipiads_compte1.js
-    document.getElementById('btnCompte1').addEventListener('click', function() {
-      chargerScript('pipiads_compte1.js');
-    });
-
-    // Quand on clique sur "Compte 2", on charge et on exécute le script pipiads_compte2.js
-    document.getElementById('btnCompte2').addEventListener('click', function() {
-      chargerScript('pipiads_compte2.js');
-    });
-
-    // Quand on clique sur "Compte 3", on charge et on exécute le script pipiads_compte3.js
-    document.getElementById('btnCompte3').addEventListener('click', function() {
-      chargerScript('pipiads_compte3.js');
-    });
-
-    /**
-     * Cette fonction va ajouter dynamiquement une balise <script> au document
-     * pour charger et exécuter le fichier JS correspondant.
-     */
-    function chargerScript(url) {
-      const script = document.createElement('script');
-      script.src = url;
-      // Une fois le script chargé, on peut éventuellement déclencher quelque chose,
-      // mais dans notre cas le script s'auto-exécutera.
-      document.head.appendChild(script);
-    }
-  </script>
-
+  <button onclick="window.location.href='/pipiads/account3'">
+    Compte 3
+  </button>
 </body>
 </html>
+
