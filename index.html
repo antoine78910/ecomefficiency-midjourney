@@ -95,7 +95,7 @@
             
             <div class="elevenlabs-info-line">
                 <span>⏰</span>
-                <span>Next refill in <strong><span id="elevenlabs-countdown">calculating...</span> hours</strong></span>
+                <span>Next refill in <strong><span id="elevenlabs-countdown">calculating...</span></strong></span>
             </div>
         </div>
         
@@ -126,16 +126,30 @@
         
         const hoursInCurrentCycle = hoursSinceLastRefill % REFILL_INTERVAL_HOURS;
         const hoursUntilNextRefill = REFILL_INTERVAL_HOURS - hoursInCurrentCycle;
-        const hoursRemaining = Math.max(1, Math.min(72, Math.ceil(hoursUntilNextRefill)));
+        
+        // Calculer les heures et minutes restantes
+        const totalMinutesRemaining = Math.max(1, hoursUntilNextRefill * 60);
+        const hoursRemaining = Math.floor(totalMinutesRemaining / 60);
+        const minutesRemaining = Math.floor(totalMinutesRemaining % 60);
+        
         const progressPercentage = Math.min(100, (hoursInCurrentCycle / REFILL_INTERVAL_HOURS) * 100);
         
-        // Mettre à jour le countdown
+        // Mettre à jour le countdown avec heures et minutes
         const countdownElement = document.getElementById('elevenlabs-countdown');
         if (countdownElement) {
-            if (hoursRemaining <= 1) {
-                countdownElement.textContent = 'less than 1';
+            if (totalMinutesRemaining < 60) {
+                // Moins d'une heure : afficher seulement les minutes
+                countdownElement.textContent = `${minutesRemaining} minutes`;
+            } else if (hoursRemaining < 1) {
+                // Moins d'une heure mais plus de 0 : afficher les minutes
+                countdownElement.textContent = `${Math.ceil(totalMinutesRemaining)} minutes`;
             } else {
-                countdownElement.textContent = hoursRemaining.toString();
+                // Plus d'une heure : afficher heures et minutes
+                if (minutesRemaining === 0) {
+                    countdownElement.textContent = `${hoursRemaining}h`;
+                } else {
+                    countdownElement.textContent = `${hoursRemaining}h ${minutesRemaining}m`;
+                }
             }
         }
         
@@ -148,23 +162,40 @@
         // Mettre à jour le texte de progression
         const progressText = document.getElementById('elevenlabs-progress-text');
         if (progressText) {
-            if (hoursRemaining <= 1) {
+            if (totalMinutesRemaining < 60) {
                 progressText.textContent = 'Refilling soon...';
-            } else if (hoursRemaining <= 24) {
-                progressText.textContent = `Day 3 - ${hoursRemaining}h remaining`;
-            } else if (hoursRemaining <= 48) {
-                progressText.textContent = `Day 2 - ${hoursRemaining}h remaining`;
+            } else if (hoursRemaining < 24) {
+                // Jour 3
+                if (minutesRemaining === 0) {
+                    progressText.textContent = `Day 3 - ${hoursRemaining}h remaining`;
+                } else {
+                    progressText.textContent = `Day 3 - ${hoursRemaining}h ${minutesRemaining}m remaining`;
+                }
+            } else if (hoursRemaining < 48) {
+                // Jour 2  
+                const adjustedHours = hoursRemaining - 24;
+                if (minutesRemaining === 0) {
+                    progressText.textContent = `Day 2 - ${adjustedHours}h remaining`;
+                } else {
+                    progressText.textContent = `Day 2 - ${adjustedHours}h ${minutesRemaining}m remaining`;
+                }
             } else {
-                progressText.textContent = `Day 1 - ${hoursRemaining}h remaining`;
+                // Jour 1
+                const adjustedHours = hoursRemaining - 48;
+                if (minutesRemaining === 0) {
+                    progressText.textContent = `Day 1 - ${adjustedHours}h remaining`;
+                } else {
+                    progressText.textContent = `Day 1 - ${adjustedHours}h ${minutesRemaining}m remaining`;
+                }
             }
         }
     }
     
     updateCountdown();
-    setInterval(updateCountdown, 60 * 60 * 1000);
+    // Mettre à jour toutes les minutes au lieu de toutes les heures
+    setInterval(updateCountdown, 60 * 1000);
 })();
 </script>
-</a> <!-- ← Ajouter cette balise fermante -->
 
 
 
