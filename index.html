@@ -81,11 +81,56 @@
         AI-powered voice synthesis technology that creates realistic and customizable human-like speech for various applications
     </div>
 
-    <!-- Popup box -->
+    <!-- Popup box with dynamic countdown -->
     <div class="absolute top-2 right-2 bg-white border border-gray-300 shadow-lg rounded-lg px-3 py-2 w-56 text-sm text-gray-800 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        ⚠️ Credits will be refilled in <strong>August</strong>.
+        ⚠️ Credits will be refilled in <strong><span id="elevenlabs-countdown">calculating...</span> hours</strong>.
     </div>
 </a>
+
+<script>
+(function() {
+    // Configuration: refill tous les 3 jours (72 heures)
+    const REFILL_INTERVAL_HOURS = 72;
+    
+    // Date de référence pour le premier refill (vous pouvez ajuster cette date)
+    // Par exemple, si vous voulez que le prochain refill soit dans 3 jours à partir de maintenant :
+    const REFERENCE_DATE = new Date('2025-01-31T00:00:00Z'); // Ajustez cette date selon vos besoins
+    
+    function updateCountdown() {
+        const now = new Date();
+        const timeSinceReference = now.getTime() - REFERENCE_DATE.getTime();
+        const hoursSinceReference = timeSinceReference / (1000 * 60 * 60);
+        
+        // Calculer combien d'heures se sont écoulées depuis le dernier cycle
+        const hoursInCurrentCycle = hoursSinceReference % REFILL_INTERVAL_HOURS;
+        
+        // Calculer les heures restantes jusqu'au prochain refill
+        const hoursUntilNextRefill = REFILL_INTERVAL_HOURS - hoursInCurrentCycle;
+        
+        // Arrondir à l'heure la plus proche
+        const hoursRemaining = Math.ceil(hoursUntilNextRefill);
+        
+        // Mettre à jour l'affichage
+        const countdownElement = document.getElementById('elevenlabs-countdown');
+        if (countdownElement) {
+            if (hoursRemaining <= 1) {
+                countdownElement.textContent = 'less than 1';
+            } else {
+                countdownElement.textContent = hoursRemaining.toString();
+            }
+        }
+    }
+    
+    // Mettre à jour immédiatement
+    updateCountdown();
+    
+    // Mettre à jour toutes les heures
+    setInterval(updateCountdown, 60 * 60 * 1000);
+    
+    // Optionnel : mettre à jour plus fréquemment pour plus de précision (toutes les 10 minutes)
+    // setInterval(updateCountdown, 10 * 60 * 1000);
+})();
+</script>
 
 
 
