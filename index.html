@@ -3,17 +3,11 @@
 <head>
 <!-- Hotjar Tracking Code for https://ecomefficiency.xyz/ -->
 <script src="https://cdn.tailwindcss.com"></script>
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecom Efficiency Tools</title>
-    <!-- Inclure Tailwind CSS -->
-    
-    <!-- Inclure votre fichier CSS personnalisé -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/Favicon.png" type="image/png">
-
-    <!-- Inclure Font Awesome pour les icônes -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body class="relative overflow-hidden">
@@ -122,18 +116,18 @@
     // Configuration: refill tous les 3 jours (72 heures)
     const REFILL_INTERVAL_HOURS = 72;
     
-    // Date de référence pour le premier refill (IMPORTANT: ajustez cette date)
-    const REFERENCE_DATE = new Date('2025-07-29T00:00:00Z'); // ← CHANGEZ CETTE DATE
+    // Date de référence: DERNIER refill effectué (pas le prochain)
+    const LAST_REFILL_DATE = new Date('2025-01-29T00:00:00Z'); // ← Date de votre DERNIER refill
     
     function updateCountdown() {
         const now = new Date();
-        const timeSinceReference = now.getTime() - REFERENCE_DATE.getTime();
-        const hoursSinceReference = timeSinceReference / (1000 * 60 * 60);
+        const timeSinceLastRefill = now.getTime() - LAST_REFILL_DATE.getTime();
+        const hoursSinceLastRefill = timeSinceLastRefill / (1000 * 60 * 60);
         
-        const hoursInCurrentCycle = hoursSinceReference % REFILL_INTERVAL_HOURS;
+        const hoursInCurrentCycle = hoursSinceLastRefill % REFILL_INTERVAL_HOURS;
         const hoursUntilNextRefill = REFILL_INTERVAL_HOURS - hoursInCurrentCycle;
-        const hoursRemaining = Math.ceil(hoursUntilNextRefill);
-        const progressPercentage = (hoursInCurrentCycle / REFILL_INTERVAL_HOURS) * 100;
+        const hoursRemaining = Math.max(1, Math.min(72, Math.ceil(hoursUntilNextRefill)));
+        const progressPercentage = Math.min(100, (hoursInCurrentCycle / REFILL_INTERVAL_HOURS) * 100);
         
         // Mettre à jour le countdown
         const countdownElement = document.getElementById('elevenlabs-countdown');
@@ -166,14 +160,11 @@
         }
     }
     
-    // Mettre à jour immédiatement
     updateCountdown();
-    
-    // Mettre à jour toutes les heures
     setInterval(updateCountdown, 60 * 60 * 1000);
 })();
 </script>
-
+</a> <!-- ← Ajouter cette balise fermante -->
 
 
 
