@@ -26,13 +26,7 @@ h1 {
     font-size: 40px;
 }
 
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    box-sizing: border-box;
-}
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; box-sizing: border-box; }
 
 
 .tool-icon img {
