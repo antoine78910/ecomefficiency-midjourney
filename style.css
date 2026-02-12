@@ -28,16 +28,15 @@ h1 {
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
     padding: 20px;
     box-sizing: border-box;
 }
-/* 6 cartes par ligne sur grands écrans */
-@media (min-width: 1280px) {
-  .tools-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
+@media (min-width: 1400px) {
+    .tools-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
 }
 
 .tool-icon img {
