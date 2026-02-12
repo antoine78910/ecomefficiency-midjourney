@@ -33,6 +33,12 @@ h1 {
     padding: 20px;
     box-sizing: border-box;
 }
+/* 6 cartes par ligne sur grands écrans */
+@media (min-width: 1280px) {
+  .tools-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
 
 .tool-icon img {
     width: 180px; /* Ajustez la taille des images si nécessaire */
