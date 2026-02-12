@@ -33,11 +33,7 @@ h1 {
     padding: 20px;
     box-sizing: border-box;
 }
-@media (min-width: 1400px) {
-    .tools-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-}
+
 
 .tool-icon img {
     width: 180px; /* Ajustez la taille des images si nécessaire */
@@ -263,49 +259,3 @@ h1 {
     text-align: center;
 }
 
-/* ===== Compact layout when 6 columns (desktop) ===== */
-@media (min-width: 1400px) {
-  /* 6 colonnes */
-  .tools-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 16px;              /* un peu plus d'espace */
-    padding: 18px;
-  }
-
-  /* carte plus compacte */
-  .tool-card {
-    padding: 14px;
-    border-radius: 10px;
-  }
-
-  /* logo / icône plus petit */
-  .tool-icon img {
-    width: 120px !important;
-    height: 120px !important;
-  }
-
-  /* titres + textes plus petits */
-  .tool-name {
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
-
-  .tool-description {
-    font-size: 12px;
-    line-height: 1.25;
-    margin-bottom: 6px;
-
-    /* limite la hauteur du texte */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* images "includes" plus petites */
-  .tool-includes img {
-    width: 28px;
-    height: 28px;
-    margin: 3px;
-  }
-}
