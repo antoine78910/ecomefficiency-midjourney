@@ -1,2 +1,267 @@
-body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; text-align: center; } body::before { display: none; /* Testez en désactivant ce style */ } html, body { height: 100%; margin: 0; padding: 0; } h1 { color: #333; margin-top: 50px; font-family: 'Kanit', sans-serif; font-weight: 1000; /* Pour un effet bold */ font-size: 40px; } .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; box-sizing: border-box; } .tool-icon img { width: 180px; /* Ajustez la taille des images si nécessaire */ height: 180px; object-fit: contain; } /* Classe générale pour toutes les images d'outils */ .tool-image { object-fit: contain; /* Vous pouvez définir une taille par défaut ici */ width: 4rem; /* 64px */ height: 4rem; /* 64px */ margin: 0.5rem; /* Exemple de marge */ } /* Classes spécifiques pour chaque groupe */ .spy-image { width: 8rem; /* 80px */ height: 8rem; /* 80px */ margin: 2rem; } .seo-image { width: 8rem; /* 72px */ height: 8rem; /* 72px */ margin: 2.6rem; } .ai-image { width: 8rem; /* 64px */ height: 8rem; /* 64px */ margin: 2.6rem; } .tool-card { background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.2); padding: 20px; text-decoration: none; color: #333; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid black; /* Contour noir léger */ } .tool-card:hover { transform: translateY(-10px); /* L'effet 3D se produit au survol */ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 24px rgba(0, 0, 0, 0.4); border-color: #333; /* Assombrir un peu le contour lors du survol */ } .tool-icon { font-size: 40px; margin-bottom: 10px; color: #007bff; } .tool-name { font-size: 24px; margin-bottom: 10px; text-align: left; /* Alignement à gauche */ font-family: 'Montserrat', sans-serif; font-weight: 800; } .tool-description { font-size: 14px; margin-bottom: 10px; font-family: 'Open Sans', sans-serif; color: #464646 } .tool-includes img { width: 40px; height: 40px; margin: 5px; } .tool-badge { background-color: #007bff; color: white; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-top: 10px; display: inline-block; } .tool-building { background-color: #ff7f00; color: white; padding: 10px 20px; border-radius: 5px; font-size: 15px; margin-top: 10px; display: inline-block; } .tool-card .tool-badge.animated-badge { animation: pulse 1.5s infinite; } @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } } /* ========== STYLES POUR LA POPUP ELEVENLABS ========== */ /* Container principal de la popup */ .elevenlabs-popup { position: absolute; top: 8px; right: 8px; background: linear-gradient(to bottom right, #faf5ff, #eef2ff); border: 1px solid #d1d5db; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); border-radius: 12px; padding: 16px; width: 256px; font-size: 14px; z-index: 20; opacity: 0; transition: all 0.3s ease; pointer-events: none; backdrop-filter: blur(4px); } /* Effet hover sur la carte pour afficher la popup */ .tool-card.group:hover .elevenlabs-popup { opacity: 1; } /* Header de la popup */ .elevenlabs-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; } /* Icône circulaire */ .elevenlabs-icon { width: 20px; height: 20px; background-color: #8b5cf6; border-radius: 50%; display: flex; align-items: center; justify-content: center; } .elevenlabs-icon svg { width: 12px; height: 12px; color: white; fill: currentColor; } /* Titre */ .elevenlabs-title { font-weight: 600; color: #581c87; } /* Container du contenu */ .elevenlabs-content { margin-bottom: 8px; } .elevenlabs-content > div { margin-bottom: 8px; } .elevenlabs-content > div:last-child { margin-bottom: 0; } /* Lignes d'information */ .elevenlabs-info-line { display: flex; align-items: center; gap: 8px; color: #374151; font-size: 12px; } .elevenlabs-info-line strong { color: #7c3aed; } /* Container de la progress bar */ .elevenlabs-progress-container { margin-top: 12px; } /* Background de la progress bar */ .elevenlabs-progress-bg { width: 100%; background-color: #e0e7ff; border-radius: 9999px; height: 6px; } /* Barre de progression */ .elevenlabs-progress-bar { background: linear-gradient(to right, #8b5cf6, #6366f1); height: 6px; border-radius: 9999px; transition: all 0.5s ease; width: 0%; } /* Texte sous la progress bar */ .elevenlabs-progress-text { font-size: 12px; color: #6b7280; margin-top: 4px; text-align: center; }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+body::before {
+    display: none; /* Testez en désactivant ce style */
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    margin-top: 50px;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 1000; /* Pour un effet bold */
+    font-size: 40px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 6 cartes par ligne sur grands écrans */
+@media (min-width: 1280px) {
+    .tools-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.tool-icon img {
+    width: 180px; /* Ajustez la taille des images si nécessaire */
+    height: 180px;
+    object-fit: contain;
+}
+
+/* Classe générale pour toutes les images d'outils */
+.tool-image {
+    object-fit: contain;
+    width: 4rem; /* 64px */
+    height: 4rem; /* 64px */
+    margin: 0.5rem; /* Exemple de marge */
+}
+
+/* Classes spécifiques pour chaque groupe */
+.spy-image {
+    width: 8rem; /* 80px */
+    height: 8rem; /* 80px */
+    margin: 2rem;
+}
+
+.seo-image {
+    width: 8rem; /* 72px */
+    height: 8rem; /* 72px */
+    margin: 2.6rem;
+}
+
+.ai-image {
+    width: 8rem; /* 64px */
+    height: 8rem; /* 64px */
+    margin: 2.6rem;
+}
+
+.tool-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid black; /* Contour noir léger */
+    aspect-ratio: 1 / 1; /* Force les cartes à rester carrées */
+}
+
+.tool-card:hover {
+    transform: translateY(-10px); /* L'effet 3D se produit au survol */
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        0 12px 24px rgba(0, 0, 0, 0.4);
+    border-color: #333; /* Assombrir un peu le contour lors du survol */
+}
+
+.tool-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.tool-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: left; /* Alignement à gauche */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.tool-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+    color: #464646;
+}
+
+.tool-includes img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
+.tool-badge {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.tool-building {
+    background-color: #ff7f00;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.tool-card .tool-badge.animated-badge {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ========== STYLES POUR LA POPUP ELEVENLABS ========== */
+
+/* Container principal de la popup */
+.elevenlabs-popup {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: linear-gradient(to bottom right, #faf5ff, #eef2ff);
+    border: 1px solid #d1d5db;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    padding: 16px;
+    width: 256px;
+    font-size: 14px;
+    z-index: 20;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+}
+
+/* Effet hover sur la carte pour afficher la popup */
+.tool-card.group:hover .elevenlabs-popup {
+    opacity: 1;
+}
+
+/* Header de la popup */
+.elevenlabs-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+/* Icône circulaire */
+.elevenlabs-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #8b5cf6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.elevenlabs-icon svg {
+    width: 12px;
+    height: 12px;
+    color: white;
+    fill: currentColor;
+}
+
+/* Titre */
+.elevenlabs-title {
+    font-weight: 600;
+    color: #581c87;
+}
+
+/* Container du contenu */
+.elevenlabs-content {
+    margin-bottom: 8px;
+}
+
+.elevenlabs-content > div {
+    margin-bottom: 8px;
+}
+
+.elevenlabs-content > div:last-child {
+    margin-bottom: 0;
+}
+
+/* Lignes d'information */
+.elevenlabs-info-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #374151;
+    font-size: 12px;
+}
+
+.elevenlabs-info-line strong {
+    color: #7c3aed;
+}
+
+/* Container de la progress bar */
+.elevenlabs-progress-container {
+    margin-top: 12px;
+}
+
+/* Background de la progress bar */
+.elevenlabs-progress-bg {
+    width: 100%;
+    background-color: #e0e7ff;
+    border-radius: 9999px;
+    height: 6px;
+}
+
+/* Barre de progression */
+.elevenlabs-progress-bar {
+    background: linear-gradient(to right, #8b5cf6, #6366f1);
+    height: 6px;
+    border-radius: 9999px;
+    transition: all 0.5s ease;
+    width: 0%;
+}
+
+/* Texte sous la progress bar */
+.elevenlabs-progress-text {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+    text-align: center;
+}
 
